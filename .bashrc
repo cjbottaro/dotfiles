@@ -24,7 +24,22 @@ if [ -d ~/.bashrc.d ]; then
 fi
 unset rc
 
+# Compact bash history
+export HISTCONTROL=ignoreboth
+shopt -s histappend
+
+# macOS specific stuff
+if [[ "$(uname)" == "Darwin" ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+    . ~/Work/multiverse/env.sh
+fi
+
+# Turn on shell history for Elixir
+export ERL_AFLAGS="-kernel shell_history enabled"
+
+# Disable tab completion
+export EXECIGNORE=/opt/homebrew/bin/kubectl.lima:/usr/local/bin/kubetail
+
 export MANGOHUD=1
 eval "$(starship init bash)"
-#alias vim=nvim
 alias ls="eza --icons"

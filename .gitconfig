@@ -1,0 +1,56 @@
+[credential]
+	helper = store
+
+[user]
+	email = cjb@cjbotta.ro
+	name = Christopher J. Bottaro
+
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan
+
+[branch]
+	autosetupmerge = always
+[push]
+	default = simple
+[checkout]
+	defaultRemote = origin
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+
+[mergetool "Kaleidoscope"]
+	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+	trustExitCode = true
+[merge]
+	tool = Kaleidoscope
+[difftool "Kaleidoscope"]
+	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+[difftool]
+	prompt = false
+[mergetool]
+	prompt = false
+[diff]
+	tool = Kaleidoscope
+
+[diff "sopsdiffer"]
+	textconv = s
+[pull]
+	rebase = false
+[credential "https://github.com"]
+	password = x-oauth-basic
+[init]
+	defaultBranch = main
