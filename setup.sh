@@ -1,9 +1,13 @@
 #!/bin/bash
 set -e
 
+brew bundle
+
 if [[ "$(uname)" == "Linux" ]]; then
   FONT_DIR=~/.local/share/fonts/
+  mkdir $FONT_DIR
 
+  mkdir /etc/keyd
   sudo cp keyd.conf /etc/keyd/default.conf
   sudo systemctl enable keyd
   sudo systemctl restart keyd
