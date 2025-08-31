@@ -34,6 +34,11 @@ if [[ "$(uname)" == "Darwin" ]]; then
     . ~/Work/multiverse/env.sh
 fi
 
+
+if [[ "$(uname)" == "Linux" ]]; then
+  alias code='flatpak run com.visualstudio.code'
+fi
+
 # Turn on shell history for Elixir
 export ERL_AFLAGS="-kernel shell_history enabled"
 

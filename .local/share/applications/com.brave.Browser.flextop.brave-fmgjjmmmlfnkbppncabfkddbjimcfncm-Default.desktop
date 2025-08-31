@@ -6,6 +6,7 @@ Type=Application
 Name=Gmail
 Exec=flatpak 'run' '--command=brave' 'com.brave.Browser' '--profile-directory=Default' '--app-id=fmgjjmmmlfnkbppncabfkddbjimcfncm'
 Icon=brave-fmgjjmmmlfnkbppncabfkddbjimcfncm-Default
-StartupWMClass=crx_fmgjjmmmlfnkbppncabfkddbjimcfncm
+StartupWMClass=brave-fmgjjmmmlfnkbppncabfkddbjimcfncm-Default
+StartupNotify=false
 X-Flatpak-Part-Of=com.brave.Browser
 TryExec=/var/lib/flatpak/exports/bin/com.brave.Browser

@@ -5,12 +5,17 @@ brew bundle
 
 if [[ "$(uname)" == "Linux" ]]; then
   FONT_DIR=~/.local/share/fonts/
-  mkdir $FONT_DIR
 
-  mkdir /etc/keyd
+  FEDORA_VERSION=$(rpm -E %fedora) sudo wget https://copr.fedorainfracloud.org/coprs/alternateved/keyd/repo/fedora-${FEDORA_VERSION}/alternateved-keyd-fedora-${FEDORA_VERSION}.repo -O /etc/yum.repos.d/_copr:alternateved:keyd.repo
+  FEDORA_VERSION=$(rpm -E %fedora) sudo wget https://copr.fedorainfracloud.org/coprs/scottames/ghostty/repo/fedora-${FEDORA_VERSION}/scottames-ghostty-fedora-${FEDORA_VERSION}.repo -O /etc/yum.repos.d/_copr:scottames:ghostty.repo
+
+  rpm-ostree refresh-md
+  rpm-ostree install keyd ghostty
+
+  sudo mkdir -p /etc/keyd
   sudo cp keyd.conf /etc/keyd/default.conf
-  sudo systemctl enable keyd
-  sudo systemctl restart keyd
+  #sudo systemctl enable keyd
+  #sudo systemctl restart keyd
 fi
 
 if [[ "$(uname)" == "Darwin" ]]; then
