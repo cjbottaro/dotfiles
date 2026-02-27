@@ -45,6 +45,9 @@ fi
 
 if [[ -f "$HOME/.kubectl-completion" ]]; then
     source "$HOME/.kubectl-completion"
+
+if [[ "$(uname)" == "Linux" ]]; then
+  alias code='flatpak run com.visualstudio.code'
 fi
 
 # Turn on shell history for Elixir
