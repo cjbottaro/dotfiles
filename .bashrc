@@ -30,8 +30,21 @@ shopt -s histappend
 
 # macOS specific stuff
 if [[ "$(uname)" == "Darwin" ]]; then
-    eval "$(/opt/homebrew/bin/brew shellenv)"
+    PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
+    eval "$(/opt/homebrew/bin/brew shellenv bash)"
     . ~/Work/multiverse/env.sh
+fi
+
+if [[ -f "$HOME/.secrets" ]]; then
+    source "$HOME/.secrets"
+fi
+
+if [[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]]; then
+    . "/opt/homebrew/etc/profile.d/bash_completion.sh"
+fi
+
+if [[ -f "$HOME/.kubectl-completion" ]]; then
+    source "$HOME/.kubectl-completion"
 fi
 
 # Turn on shell history for Elixir
@@ -40,6 +53,18 @@ export ERL_AFLAGS="-kernel shell_history enabled"
 # Disable tab completion
 export EXECIGNORE=/opt/homebrew/bin/kubectl.lima:/usr/local/bin/kubetail
 
+# asdf
+if command -v asdf >/dev/null; then
+    export PATH="$HOME/.asdf/shims:$PATH"
+    . <(asdf completion bash)
+fi
+
+# mise
+# if command -v mise >/dev/null 2>&1; then
+#     eval "$(mise activate bash)"
+# fi
+
 export MANGOHUD=1
 eval "$(starship init bash)"
+eval "$(direnv hook bash)"
 alias ls="eza --icons"

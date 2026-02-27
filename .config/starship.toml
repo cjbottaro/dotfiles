@@ -1,1 +1,8 @@
 format = "$directory$git_branch$kubernetes\n$character"
+
+[git_branch]
+format = '[$symbol$branch(:$remote_branch)]($style) '
+
+[kubernetes]
+disabled = false
+format = '[$symbol$context]($style) '

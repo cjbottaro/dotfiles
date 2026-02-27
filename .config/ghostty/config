@@ -20,6 +20,9 @@
 # # The config file consists of simple key-value pairs,
 # # separated by equals signs.
 font-family = BitstromWera Nerd Font Mono Bold
+font-size = 15
+font-style = bold
+font-thicken
 # window-padding-x = 2
 #
 # # Spacing around the equals sign does not matter.
@@ -42,14 +45,22 @@ font-family = BitstromWera Nerd Font Mono Bold
 # # Just for example:
 # resize-overlay-duration = 4s 200ms
 
-background-opacity = 0.8
+theme = Dracula
+
+macos-non-native-fullscreen = visible-menu
+background-opacity = 0.9
 cursor-style = bar
-shell-integration-features = no-cursor
+# shell-integration-features = no-cursor
 app-notifications = no-clipboard-copy
-keybind = ctrl+shift+r=reload_config
-keybind = ctrl+v=paste_from_clipboard
-keybind = performable:ctrl+c=copy_to_clipboard
-keybind = ctrl+k=clear_screen
-keybind = ctrl+d=new_split:right
-keybind = ctrl+shift+d=new_split:down
-keybind = ctrl+shift+e=equalize_splits
+copy-on-select = clipboard
+window-padding-x = 10
+window-padding-y = 10
+
+keybind = global:cmd+escape=toggle_quick_terminal
+keybind = cmd+shift+r=reload_config
+# keybind = cmd+v=paste_from_clipboard
+# keybind = performable:cmd+c=copy_to_clipboard
+# keybind = cmd+k=clear_screen
+keybind = cmd+d=new_split:right
+keybind = cmd+shift+d=new_split:down
+keybind = cmd+shift+e=equalize_splits
