@@ -64,6 +64,8 @@ keybind = cmd+shift+e=equalize_splits
 clipboard-paste-protection = false
 window-width = 120
 window-height = 30
+window-padding-x = 10
+window-padding-y = 10
 
 keybind = ctrl+shift+r=reload_config
 keybind = ctrl+v=paste_from_clipboard

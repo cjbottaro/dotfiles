@@ -45,6 +45,7 @@ fi
 
 if [[ -f "$HOME/.kubectl-completion" ]]; then
     source "$HOME/.kubectl-completion"
+fi
 
 if [[ "$(uname)" == "Linux" ]]; then
   alias code='flatpak run com.visualstudio.code'
@@ -63,9 +64,9 @@ if command -v asdf >/dev/null; then
 fi
 
 # mise
-# if command -v mise >/dev/null 2>&1; then
-#     eval "$(mise activate bash)"
-# fi
+if command -v mise >/dev/null 2>&1; then
+    eval "$(mise activate bash)"
+fi
 
 export MANGOHUD=1
 eval "$(starship init bash)"
