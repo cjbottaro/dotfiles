@@ -4,6 +4,7 @@ set -euo pipefail
 repo_dir=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
 font_dir="${HOME}/.local/share/fonts"
 font_file="${font_dir}/BitstromWeraNerdFontMono-Bold.ttf"
+ghostty_dir="${HOME}/.config/ghostty"
 
 # brew bundle --file="${repo_dir}/Brewfile"
 
@@ -36,6 +37,9 @@ if [[ ! -f "${font_file}" ]]; then
   rm -f -- "${font_archive}"
   fc-cache "${font_dir}"
 fi
+
+mkdir -p "${ghostty_dir}"
+ln -sfn linux "${ghostty_dir}/platform"
 
 printf '%s\n' \
   'After installing Brave web apps, run ./restore-brave-apps to restore their GNOME launchers and icons.'

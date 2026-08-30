@@ -47,10 +47,6 @@ if [[ -f "$HOME/.kubectl-completion" ]]; then
     source "$HOME/.kubectl-completion"
 fi
 
-if [[ "$(uname)" == "Linux" ]]; then
-  alias code='flatpak run com.visualstudio.code'
-fi
-
 # Turn on shell history for Elixir
 export ERL_AFLAGS="-kernel shell_history enabled"
 
@@ -71,4 +67,4 @@ fi
 export MANGOHUD=1
 eval "$(starship init bash)"
 eval "$(direnv hook bash)"
-alias ls="eza --icons"
+alias ls="eza --icons always"

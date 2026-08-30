@@ -1,0 +1,15 @@
+font-family = BitstromWera Nerd Font Mono Bold
+font-style = bold
+font-thicken
+
+theme = Dracula
+background-opacity = 0.9
+cursor-style = bar
+app-notifications = no-clipboard-copy
+copy-on-select = clipboard
+clipboard-paste-protection = false
+
+window-width = 120
+window-height = 30
+window-padding-x = 10
+window-padding-y = 10

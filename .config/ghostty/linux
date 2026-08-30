@@ -1,0 +1,9 @@
+font-size = 14
+
+keybind = ctrl+shift+r=reload_config
+keybind = ctrl+v=paste_from_clipboard
+keybind = performable:ctrl+c=copy_to_clipboard
+keybind = ctrl+k=clear_screen
+keybind = ctrl+d=new_split:right
+keybind = ctrl+shift+d=new_split:down
+keybind = ctrl+shift+e=equalize_splits

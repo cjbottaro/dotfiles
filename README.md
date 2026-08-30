@@ -20,6 +20,10 @@ Stow the dotfiles from the repository directory:
 stow --target="$HOME" .
 ```
 
+The platform setup script also selects the matching Ghostty overrides by
+linking `~/.config/ghostty/platform` to either the tracked `linux` or `macos`
+configuration. Shared Ghostty settings live in `common`.
+
 ### Brave web apps on GNOME
 
 Brave's installed-web-app state lives in its browser profile and is not part of

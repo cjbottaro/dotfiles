@@ -1,0 +1,8 @@
+font-size = 15
+macos-non-native-fullscreen = visible-menu
+
+keybind = global:cmd+escape=toggle_quick_terminal
+keybind = cmd+shift+r=reload_config
+keybind = cmd+d=new_split:right
+keybind = cmd+shift+d=new_split:down
+keybind = cmd+shift+e=equalize_splits
