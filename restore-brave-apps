@@ -1,0 +1,62 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [[ $(uname) != Linux ]]; then
+  printf '%s\n' 'restore-brave-apps is only needed on Linux.' >&2
+  exit 1
+fi
+
+repo_dir=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
+state_dir=${XDG_STATE_HOME:-"${HOME}/.local/state"}
+backup_dir="${state_dir}/dotfiles/brave-app-backups/$(date +%Y%m%d-%H%M%S-%N)"
+backed_up=false
+
+shopt -s nullglob
+managed_files=(
+  "${repo_dir}"/.local/share/applications/com.brave.Browser.flextop.brave-*-Default.desktop
+  "${repo_dir}"/.local/share/icons/hicolor/*/apps/brave-*-Default.png
+)
+shopt -u nullglob
+
+if (( ${#managed_files[@]} == 0 )); then
+  printf '%s\n' 'No tracked Brave app launchers or icons were found.' >&2
+  exit 1
+fi
+
+for source_path in "${managed_files[@]}"; do
+  relative_path=${source_path#"${repo_dir}/"}
+  target_path="${HOME}/${relative_path}"
+  target_dir=$(dirname -- "${target_path}")
+
+  if [[ -L ${target_path} ]] &&
+    [[ $(readlink -f -- "${target_path}") == $(readlink -f -- "${source_path}") ]]; then
+    continue
+  fi
+
+  mkdir -p -- "${target_dir}"
+  if [[ -e ${target_path} || -L ${target_path} ]]; then
+    backup_path="${backup_dir}/${relative_path}"
+    mkdir -p -- "$(dirname -- "${backup_path}")"
+    mv -- "${target_path}" "${backup_path}"
+    backed_up=true
+  fi
+
+  link_target=$(realpath --relative-to="${target_dir}" "${source_path}")
+  ln -s -- "${link_target}" "${target_path}"
+done
+
+applications_dir="${HOME}/.local/share/applications"
+icons_dir="${HOME}/.local/share/icons/hicolor"
+
+if command -v update-desktop-database >/dev/null 2>&1; then
+  update-desktop-database "${applications_dir}"
+fi
+
+if command -v gtk-update-icon-cache >/dev/null 2>&1; then
+  gtk-update-icon-cache --force --ignore-theme-index "${icons_dir}"
+fi
+
+if [[ ${backed_up} == true ]]; then
+  printf 'Replaced generated Brave files; originals are backed up at %s\n' "${backup_dir}"
+fi
+printf '%s\n' 'Restored tracked Brave launchers and icons and refreshed GNOME caches.'

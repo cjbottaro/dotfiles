@@ -1,5 +1,8 @@
 \.git
 Brewfile
 keyd\.conf
-setup\.sh
+setup-linux\.sh
+setup-macos\.sh
+restore-brave-apps
+README\.md
 copy-icons
